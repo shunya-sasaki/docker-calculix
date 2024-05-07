@@ -1,0 +1,22 @@
+version: '3.0'
+services:
+  ubuntu:
+    container_name: ubuntu-calculix
+    build: ubuntu-calculix
+    user: root
+    working_dir: /home/ubuntu
+    command: /bin/bash
+    tty: true
+    # volumes:
+    #   - ./work:/home/ubuntu
+    networks:
+      - mynet
+    secrets:
+      - user_password
+secrets:
+  user_password:
+    file: secret.txt
+
+networks:
+  mynet:
+    driver: bridge
